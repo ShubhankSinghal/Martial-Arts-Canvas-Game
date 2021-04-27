@@ -21,23 +21,25 @@ let loadImages = (callback) => {
   let images = { idle: [], kick: [], punch: [] };
   let imagesToLoad = 0;
 
-  ["idle", "kick", "punch"].forEach((animation) => {
-    let animationFrames = frames[animation];
-    imagesToLoad += animationFrames.length;
+  ["idle", "kick", "punch", "forward", "backward", "block"].forEach(
+    (animation) => {
+      let animationFrames = frames[animation];
+      imagesToLoad += animationFrames.length;
 
-    animationFrames.forEach((frameNumber) => {
-      let path = imagePath(frameNumber, animation);
+      animationFrames.forEach((frameNumber) => {
+        let path = imagePath(frameNumber, animation);
 
-      loadImage(path, (image) => {
-        images[animation][frameNumber - 1] = image;
-        imagesToLoad -= 1;
+        loadImage(path, (image) => {
+          images[animation][frameNumber - 1] = image;
+          imagesToLoad -= 1;
 
-        if (imagesToLoad === 0) {
-          callback(images);
-        }
+          if (imagesToLoad === 0) {
+            callback(images);
+          }
+        });
       });
-    });
-  });
+    }
+  );
 };
 
 let animate = (ctx, images, animation, callback) => {
