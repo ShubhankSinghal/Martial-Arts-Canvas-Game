@@ -5,122 +5,122 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Martial Arts Canvas Game</title>
     <link href="tailwind.css" type="text/css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css" href="style.css" />
+    <style>
+      #canva {
+        background-image: url(./images/background.jpg);
+        height: 100%;
+        width: 100%;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+      }
+    </style>
   </head>
+
   <body
     class="decoration-clone md:decoration-slice bg-gradient-to-b from-yellow-400 to-red-500 text-transparent"
   >
-    <h1 style="text-align: center; color: blue">Martial Arts Canvas Game</h1>
-
-    <div
-      id="canva"
-      class="container box-border mx-auto p-2 mt-10 border-4 flex flex-row"
-    >
+    <!-- Outer div for background-->
+    <div id="canva" class="flex flex-row">
+      <!-- Player1-->
       <canvas id="my-canvas-1" height="500px" width="500px"></canvas>
-      <canvas
-        id="my-canvas-2"
-        height="500px"
-        width="500px"
-        style="float: right"
-      ></canvas>
+
+      <!-- Player2-->
+      <canvas id="my-canvas-2" height="500px" width="500px"></canvas>
     </div>
 
-    <div class="container mx-auto px-4 mt-5 flex flex-row gap-5">
-      <table class="mx-auto px-4 text-center">
+    <!-- Controls for Player1-->
+    <div class="container m-auto flex flex-row gap-5 mt-10">
+      <table class="text-center border-separate m-auto">
         <tr>
-          <td>
-            <button
-              id="punch1"
-              class="transition duration-500 ease-in-out bg-blue-600 hover:bg-red-600 transform hover:-translate-y-1 hover:scale-110 py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700"
-            >
-              Punch
-            </button>
+          <td
+            id="punch1"
+            class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-blue-500 hover:bg-red-400"
+          >
+            Punch
           </td>
-          <td colspan="2">
-            <button
-              id="block1"
-              class="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700"
-            >
-              Block
-            </button>
+          <td
+            colspan="2"
+            id="block1"
+            class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-blue-500 hover:bg-red-400"
+          >
+            Block
           </td>
-          <td>
-            <button
-              id="kick1"
-              class="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700"
-            >
-              Kick
-            </button>
+          <td
+            id="kick1"
+            class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-blue-500 hover:bg-red-400"
+          >
+            Kick
           </td>
         </tr>
         <tr>
-          <td colspan="2">
-            <button
-              id="backward1"
-              class="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700"
-            >
-              Backward
-            </button>
+          <td
+            colspan="2"
+            id="backward1"
+            class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-blue-500 hover:bg-red-400"
+          >
+            Backward
           </td>
-          <td colspan="2">
-            <button
-              id="forward1"
-              class="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700"
-            >
-              Forward
-            </button>
+          <td
+            colspan="2"
+            id="forward1"
+            class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-blue-500 hover:bg-red-400"
+          >
+            Forward
           </td>
         </tr>
       </table>
-      <table class="mx-auto px-4 text-center">
+
+      <!-- Heading-->
+      <h1 class="text-center text-blue-400 text-6xl">
+        Martial Arts Canvas Game
+      </h1>
+
+      <!-- Controls for Player2-->
+      <table class="text-center border-separate m-auto">
         <tr>
-          <td>
-            <button
-              id="kick2"
-              class="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700"
-            >
-              Kick
-            </button>
+          <td
+            id="kick2"
+            class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-yellow-500"
+          >
+            Kick
           </td>
-          <td colspan="2">
-            <button
-              id="block2"
-              class="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700"
-            >
-              Block
-            </button>
+          <td
+            colspan="2"
+            id="block2"
+            class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-yellow-500"
+          >
+            Block
           </td>
-          <td>
-            <button
-              id="punch2"
-              class="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700"
-            >
-              Punch
-            </button>
+          <td
+            id="punch2"
+            class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-yellow-500"
+          >
+            Punch
           </td>
         </tr>
         <tr>
-          <td colspan="2">
-            <button
-              id="forward2"
-              class="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700"
-            >
-              Forward
-            </button>
+          <td
+            colspan="2"
+            id="forward2"
+            class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-yellow-500"
+          >
+            Forward
           </td>
-          <td colspan="2">
-            <button
-              id="backward2"
-              class="py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-green-700"
-            >
-              Backward
-            </button>
+          <td
+            colspan="2"
+            id="backward2"
+            class="transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-110 py-2 px-4 font-semibold rounded-lg shadow-md text-white bg-green-500 hover:bg-yellow-500"
+          >
+            Backward
           </td>
         </tr>
       </table>
     </div>
 
+    <!-- Script File for Player1-->
     <script src="script1.js"></script>
+    <!-- Script file for Player2-->
     <script src="script2.js"></script>
   </body>
 </html>
