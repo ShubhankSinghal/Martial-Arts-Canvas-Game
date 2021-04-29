@@ -12,7 +12,7 @@ loadImages(2, (images) => {
       selectedAnimation = queueAnimation.shift();
     }
 
-    animate(ctx2, 800, images, selectedAnimation, aux);
+    animate(2, ctx2, images, selectedAnimation, aux);
   };
 
   aux();

@@ -1,5 +1,9 @@
 let c = document.getElementById("my-canvas");
 let ctx1 = c.getContext("2d");
+let positionStart = {
+  1: -80,
+  2: 920,
+};
 
 let loadImage = (src, callback) => {
   let img = document.createElement("img");
@@ -54,11 +58,34 @@ let loadImages = (player, callback) => {
   );
 };
 
-let animate = (ctx, start, images, animation, callback) => {
+let animate = (player, ctx, images, animation, callback) => {
+  if (player == 1 && animation == "backward" && positionStart[player] > -80) {
+    positionStart[player] -= 40;
+  } else if (
+    player == 1 &&
+    animation == "forward" &&
+    positionStart[player] < positionStart[2] - 360
+  ) {
+    positionStart[player] += 40;
+  } else if (
+    player == 2 &&
+    animation == "backward" &&
+    positionStart[player] < 920
+  ) {
+    positionStart[player] += 40;
+  } else if (
+    player == 2 &&
+    animation == "forward" &&
+    positionStart[player] > positionStart[1] + 360
+  ) {
+    positionStart[player] -= 40;
+  }
+  console.log(positionStart);
+
   images[animation].forEach((image, index) => {
     setTimeout(() => {
-      ctx.clearRect(start, 0, 500, 500);
-      ctx.drawImage(image, start, 0, 500, 500);
+      ctx.clearRect(positionStart[player], 0, 500, 500);
+      ctx.drawImage(image, positionStart[player], 0, 500, 500);
     }, index * 100);
   });
   setTimeout(callback, images[animation].length * 100);
@@ -76,7 +103,7 @@ loadImages(1, (images) => {
       selectedAnimation = queueAnimation.shift();
     }
 
-    animate(ctx1, 0, images, selectedAnimation, aux);
+    animate(1, ctx1, images, selectedAnimation, aux);
   };
 
   aux();
