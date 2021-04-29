@@ -21,12 +21,13 @@
     class="decoration-clone md:decoration-slice bg-gradient-to-b from-yellow-400 to-red-500 text-transparent"
   >
     <!-- Outer div for background-->
-    <div id="canva" class="flex flex-row">
-      <!-- Player1-->
-      <canvas id="my-canvas-1" height="500px" width="500px"></canvas>
-
-      <!-- Player2-->
-      <canvas id="my-canvas-2" height="500px" width="500px"></canvas>
+    <div id="canva" class="flex flex-row" style="position: relative">
+      <canvas
+        id="my-canvas"
+        width="1345px"
+        height="500px"
+        style="border: 1px solid black"
+      ></canvas>
     </div>
 
     <!-- Controls for Player1-->
@@ -120,7 +121,8 @@
 
     <!-- Script File for Player1-->
     <script src="script1.js"></script>
-    <!-- Script file for Player2-->
+    <!-- Script file for Player2
+    -->
     <script src="script2.js"></script>
   </body>
 </html>
