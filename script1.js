@@ -1,5 +1,5 @@
-let c1 = document.getElementById("my-canvas-1");
-let ctx1 = c1.getContext("2d");
+let c = document.getElementById("my-canvas");
+let ctx1 = c.getContext("2d");
 
 let loadImage = (src, callback) => {
   let img = document.createElement("img");
@@ -7,8 +7,10 @@ let loadImage = (src, callback) => {
   img.src = src;
 };
 
-let imagePath = (frameNumber, animation) => {
-  return "images/player1/" + animation + "/" + frameNumber + ".png";
+let imagePath = (frameNumber, animation, player) => {
+  return (
+    "images/player" + player + "/" + animation + "/" + frameNumber + ".png"
+  );
 };
 
 let frames = {
@@ -20,7 +22,7 @@ let frames = {
   block: [1, 2, 3, 4, 5, 6, 7, 8, 9],
 };
 
-let loadImages = (callback) => {
+let loadImages = (player, callback) => {
   let images = {
     idle: [],
     kick: [],
@@ -37,7 +39,7 @@ let loadImages = (callback) => {
       imagesToLoad += animationFrames.length;
 
       animationFrames.forEach((frameNumber) => {
-        let path = imagePath(frameNumber, animation);
+        let path = imagePath(frameNumber, animation, player);
 
         loadImage(path, (image) => {
           images[animation][frameNumber - 1] = image;
@@ -52,17 +54,17 @@ let loadImages = (callback) => {
   );
 };
 
-let animate = (ctx, images, animation, callback) => {
+let animate = (ctx, start, images, animation, callback) => {
   images[animation].forEach((image, index) => {
     setTimeout(() => {
-      ctx.clearRect(0, 0, 500, 500);
-      ctx.drawImage(image, 0, 0, 500, 500);
+      ctx.clearRect(start, 0, 500, 500);
+      ctx.drawImage(image, start, 0, 500, 500);
     }, index * 100);
   });
   setTimeout(callback, images[animation].length * 100);
 };
 
-loadImages((images) => {
+loadImages(1, (images) => {
   let queueAnimation = [];
 
   let aux = () => {
@@ -74,7 +76,7 @@ loadImages((images) => {
       selectedAnimation = queueAnimation.shift();
     }
 
-    animate(ctx1, images, selectedAnimation, aux);
+    animate(ctx1, 0, images, selectedAnimation, aux);
   };
 
   aux();
@@ -94,11 +96,18 @@ loadImages((images) => {
   document.getElementById("block1").onclick = () => {
     queueAnimation.push("block");
   };
-  document.addEventListener("keyup", (event) => {
+
+  document.addEventListener("keydown", (event) => {
     const key = event.key;
-    if (key === "ArrowLeft") {
+    if (key === "d" || key == "D") {
+      queueAnimation.push("forward");
+    } else if (key === "a" || key == "A") {
+      queueAnimation.push("backward");
+    } else if (key === "Shift") {
+      queueAnimation.push("block");
+    } else if (key === "s" || key == "S") {
       queueAnimation.push("kick");
-    } else if (key === "ArrowRight") {
+    } else if (key === "w" || key == "W") {
       queueAnimation.push("punch");
     }
   });
